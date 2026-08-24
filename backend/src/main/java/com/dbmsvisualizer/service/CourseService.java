@@ -35,7 +35,7 @@ public class CourseService {
     }
 
     public List<Course> findByDepartmentId(Long departmentId) {
-        return courseRepository.findByDepartmentId(departmentId);
+        return courseRepository.findByDepartment_Id(departmentId);
     }
 
     public List<Course> searchByName(String name) {

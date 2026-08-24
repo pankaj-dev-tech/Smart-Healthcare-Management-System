@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import axiosClient from '../api/axiosClient';
+import QueryPipelineAnimation from '../components/QueryPipelineAnimation';
 
 // Simple regex-based SQL Syntax Highlighter
 const highlightSQL = (text) => {
@@ -589,6 +590,9 @@ export default function SqlEditor() {
   const [showErrorAnimation, setShowErrorAnimation] = useState(false);
   const [errorAnimData, setErrorAnimData] = useState(null);
   const [errorAnimStep, setErrorAnimStep] = useState(0); // 0: Parser, 1: Error Detection, 2: Highlight & Explanation
+
+  // Animation state for Query Processing Pipeline
+  const [showPipelineAnimation, setShowPipelineAnimation] = useState(false);
 
   const textareaRef = useRef(null);
   const backdropRef = useRef(null);
@@ -1261,6 +1265,12 @@ export default function SqlEditor() {
                   className="px-4 py-1.5 rounded-lg text-xs font-semibold bg-white/5 border border-white/10 hover:bg-white/10 text-white transition-all"
                 >
                   Clear
+                </button>
+                <button
+                  onClick={() => setShowPipelineAnimation(true)}
+                  className="px-4 py-1.5 rounded-lg text-xs font-semibold bg-white/5 border border-violet-500/30 text-violet-400 hover:bg-violet-500/10 hover:border-violet-400/50 transition-all flex items-center gap-1"
+                >
+                  🔬 Pipeline
                 </button>
                 <button
                   onClick={handleExecute}
@@ -3142,6 +3152,14 @@ export default function SqlEditor() {
 
           </div>
         </div>
+      )}
+
+      {/* Query Processing Pipeline Animation Overlay */}
+      {showPipelineAnimation && (
+        <QueryPipelineAnimation
+          query={query}
+          onClose={() => setShowPipelineAnimation(false)}
+        />
       )}
 
     </div>

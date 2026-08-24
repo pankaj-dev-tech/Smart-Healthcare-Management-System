@@ -14,7 +14,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
     Optional<Student> findByRollNumber(String rollNumber);
 
-    List<Student> findByDepartmentId(Long departmentId);
+    List<Student> findByDepartment_Id(Long departmentId);
 
     List<Student> findByNameContainingIgnoreCase(String name);
 

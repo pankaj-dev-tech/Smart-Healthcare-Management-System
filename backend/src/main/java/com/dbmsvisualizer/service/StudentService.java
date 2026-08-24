@@ -39,7 +39,7 @@ public class StudentService {
     }
 
     public List<Student> findByDepartmentId(Long departmentId) {
-        return studentRepository.findByDepartmentId(departmentId);
+        return studentRepository.findByDepartment_Id(departmentId);
     }
 
     public List<Student> searchByName(String name) {
